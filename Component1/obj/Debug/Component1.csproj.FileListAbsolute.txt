@@ -1,0 +1,10 @@
+C:\Users\Shreya\source\repos\Component1\Component1\bin\Debug\Component1.exe.config
+C:\Users\Shreya\source\repos\Component1\Component1\bin\Debug\Component1.exe
+C:\Users\Shreya\source\repos\Component1\Component1\bin\Debug\Component1.pdb
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.csprojAssemblyReference.cache
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.Form1.resources
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.Properties.Resources.resources
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.csproj.GenerateResource.cache
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.csproj.CoreCompileInputs.cache
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.exe
+C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.pdb
