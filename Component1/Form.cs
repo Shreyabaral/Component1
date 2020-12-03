@@ -88,12 +88,37 @@ namespace Component1
                             }
                         }
                     }
+                    else if (cmd[0].Equals("circle") == true)
+                    {
+                        if (cmd.Length != 2)
+                        {
+                            MessageBox.Show("Incorrect Parameter");
+                        }
+                        else
+                        {
+                            if (cmd[1].Equals("radius") == true)
+                            {
+                                IBasicShapes circle = factory.getShape("circle");
+                                Circle c = new Circle();
+                                c.set(Color.AliceBlue, x, y, radius);
+                                c.draw(g);
+                            }
+                            else
+                            {
+                                Int32.TryParse(cmd[1], out radius);
+                                IBasicShapes circle = factory.getShape("circle");
+                                Circle c = new Circle();
+                                c.set(Color.AliceBlue, x, y, radius);
+                                c.draw(g);
+                            }
+                        }
+                    }
                     else if (cmd[0].Equals("triangle") == true)
                     {
                         string[] param = cmd[1].Split(',');
                         if (param.Length != 2)
                         {
-                            MessageBox.Show("Incorrect Parameter");
+                            MessageBox.Show("Invalid Input");
 
                         }
                         else
@@ -106,6 +131,20 @@ namespace Component1
                             r.draw(g);
                         }
                     }
+                    else if (!cmd[0].Equals(null))
+                    {
+                        int errorLine = i + 1;
+                        MessageBox.Show("Invalid command recognised on line " + errorLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
+            else
+            {
+                if (txt_execution_command.Text.ToLower().Trim() == "clear")
+                {
+                    txt_input_command.Clear();
+
 
                 }
             }
