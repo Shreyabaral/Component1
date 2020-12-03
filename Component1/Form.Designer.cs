@@ -55,7 +55,7 @@
             // 
             this.PDisplay.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PDisplay.Controls.Add(this.picDisplay);
-            this.PDisplay.Location = new System.Drawing.Point(12, 54);
+            this.PDisplay.Location = new System.Drawing.Point(12, 52);
             this.PDisplay.Name = "PDisplay";
             this.PDisplay.Size = new System.Drawing.Size(495, 384);
             this.PDisplay.TabIndex = 3;
@@ -119,12 +119,14 @@
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // browseToolStripMenuItem
             // 
             this.browseToolStripMenuItem.Name = "browseToolStripMenuItem";
             this.browseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.browseToolStripMenuItem.Text = "Browse";
+            this.browseToolStripMenuItem.Click += new System.EventHandler(this.browseToolStripMenuItem_Click);
             // 
             // Form
             // 
