@@ -39,6 +39,12 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.browseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PDisplay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,6 +60,7 @@
             // PDisplay
             // 
             this.PDisplay.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.PDisplay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PDisplay.Controls.Add(this.picDisplay);
             this.PDisplay.Location = new System.Drawing.Point(12, 52);
             this.PDisplay.Name = "PDisplay";
@@ -62,7 +69,7 @@
             // 
             // picDisplay
             // 
-            this.picDisplay.Location = new System.Drawing.Point(21, 19);
+            this.picDisplay.Location = new System.Drawing.Point(21, 20);
             this.picDisplay.Name = "picDisplay";
             this.picDisplay.Size = new System.Drawing.Size(431, 344);
             this.picDisplay.TabIndex = 0;
@@ -70,6 +77,7 @@
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txt_input_command);
             this.panel2.Controls.Add(this.txt_execution_command);
             this.panel2.Location = new System.Drawing.Point(528, 124);
@@ -79,6 +87,8 @@
             // 
             // txt_input_command
             // 
+            this.txt_input_command.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F);
+            this.txt_input_command.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.txt_input_command.Location = new System.Drawing.Point(28, 37);
             this.txt_input_command.Multiline = true;
             this.txt_input_command.Name = "txt_input_command";
@@ -98,8 +108,13 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem,
+            this.gitToolStripMenuItem,
+            this.helpToolStripMenuItem1,
+            this.gitToolStripMenuItem1,
+            this.closeToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 5;
@@ -128,12 +143,52 @@
             this.browseToolStripMenuItem.Text = "Browse";
             this.browseToolStripMenuItem.Click += new System.EventHandler(this.browseToolStripMenuItem_Click);
             // 
+            // gitToolStripMenuItem
+            // 
+            this.gitToolStripMenuItem.Name = "gitToolStripMenuItem";
+            this.gitToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.gitToolStripMenuItem.Text = "View";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.helpToolStripMenuItem.Text = "Home";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem1.Text = "Help";
+            // 
+            // gitToolStripMenuItem1
+            // 
+            this.gitToolStripMenuItem1.Name = "gitToolStripMenuItem1";
+            this.gitToolStripMenuItem1.Size = new System.Drawing.Size(42, 24);
+            this.gitToolStripMenuItem1.Text = "Git";
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip2.TabIndex = 6;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.closeToolStripMenuItem.Text = "Close";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.PDisplay);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -162,6 +217,12 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem browseToolStripMenuItem;
         private System.Windows.Forms.PictureBox picDisplay;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem gitToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip2;
     }
 }
 
