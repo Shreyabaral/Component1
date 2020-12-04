@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Component1
 {
-    internal class Rectangle : IBasicShapes
+    public class Rectangle : IBasicShapes
     {
         public int x, y, width, height;
 

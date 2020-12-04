@@ -60,6 +60,21 @@ namespace Component1
 
         }
 
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("file:///E:/Help.pdf");
+        }
+
+        private void gitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Shreyabaral/Component1");
+        }
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -195,9 +210,13 @@ namespace Component1
             {
                 if (txt_execution_command.Text.ToLower().Trim() == "clear")
                 {
+
+                    picDisplay.Invalidate();
+
+                }
+                else if (txt_execution_command.Text.ToLower().Trim() == "reset")
+                {
                     txt_input_command.Clear();
-
-
                 }
             }
         }

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Component1
 {
-    internal class Circle : IBasicShapes
+    public class Circle : IBasicShapes
     {
         public int x,y,radius;
 
