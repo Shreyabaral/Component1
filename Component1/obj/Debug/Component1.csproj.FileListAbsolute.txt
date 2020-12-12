@@ -8,3 +8,13 @@ C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.csproj.C
 C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.exe
 C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.pdb
 C:\Users\Shreya\source\repos\Component1\Component1\obj\Debug\Component1.Form.resources
+C:\Users\Dell\source\repos\Component1\Component1\bin\Debug\Component1.exe.config
+C:\Users\Dell\source\repos\Component1\Component1\bin\Debug\Component1.exe
+C:\Users\Dell\source\repos\Component1\Component1\bin\Debug\Component1.pdb
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.csprojAssemblyReference.cache
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.Form.resources
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.Properties.Resources.resources
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.csproj.GenerateResource.cache
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.csproj.CoreCompileInputs.cache
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.exe
+C:\Users\Dell\source\repos\Component1\Component1\obj\Debug\Component1.pdb

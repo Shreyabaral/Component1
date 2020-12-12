@@ -21,7 +21,10 @@ namespace Component1
         Creator factory = new Factory();
         Pen myPen = new Pen(Color.Black);
         public Color newcolor;
-        int x = 0, y = 0, width, height, radius;
+        int x = 0, y = 0;
+        public int width = 0;
+        public int height = 0;
+        public int radius = 0;
 
         private void browseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -90,127 +93,15 @@ namespace Component1
 
         private void txt_execution_command_TextChanged(object sender, EventArgs e)
         {
+
             if (txt_execution_command.Text.ToLower().Trim() == "run")
             {
-                Graphics g = picDisplay.CreateGraphics();
-                string command = txt_input_command.Text.ToLower();
-                string[] commandline = command.Split(new String[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-                for (int i = 0; i < commandline.Length; i++)
-                {
-                    string[] cmd = commandline[i].Split(' ');
-                    if (cmd[0].Equals("moveto") == true)
-                    {
-                        picDisplay.Refresh();
-                        string[] param = cmd[1].Split(',');
-                        if (param.Length != 2)
-                        {
-                            MessageBox.Show("Invalid Input");
-                        }
-                        else
-                        {
-                            Int32.TryParse(param[0], out x);
-                            Int32.TryParse(param[1], out y);
-                            moveTo(x, y);
-                        }
-                    }
-                    else if (cmd[0].Equals("drawto") == true)
-                    {
-                        string[] param = cmd[1].Split(',');
-                        int x = 0, y = 0;
-                        if (param.Length != 2)
-                        {
-                            MessageBox.Show("Invalid Input");
-                        }
-                        else
-                        {
-                            Int32.TryParse(param[0], out x);
-                            Int32.TryParse(param[1], out y);
-                            drawTo(x, y);
-                        }
-                    }
-
-                    else if (cmd[0].Equals("rectangle") == true)
-                    {
-                        if (cmd.Length < 2)
-                        {
-                            MessageBox.Show("Invalid Input");
-                        }
-                        else
-                        {
-                            string[] param = cmd[1].Split(',');
-                            if (param.Length < 2)
-                            {
-                                MessageBox.Show("Invalid Input ");
-
-                            }
-                            else
-                            {
-                                Int32.TryParse(param[0], out width);
-                                Int32.TryParse(param[1], out height);
-                                IBasicShapes circle = factory.getShape("rectangle");
-                                Rectangle r = new Rectangle();
-                                r.set(Color.Black, x, y, width, height);
-                                r.draw(g);
-                            }
-                        }
-                    }
-                    else if (cmd[0].Equals("circle") == true)
-                    {
-                        if (cmd.Length != 2)
-                        {
-                            MessageBox.Show("Incorrect Parameter");
-                        }
-                        else
-                        {
-                            if (cmd[1].Equals("radius") == true)
-                            {
-                                IBasicShapes circle = factory.getShape("circle");
-                                Circle c = new Circle();
-                                c.set(Color.AliceBlue, x, y, radius);
-                                c.draw(g);
-                            }
-                            else
-                            {
-                                Int32.TryParse(cmd[1], out radius);
-                                IBasicShapes circle = factory.getShape("circle");
-                                Circle c = new Circle();
-                                c.set(Color.AliceBlue, x, y, radius);
-                                c.draw(g);
-                            }
-                        }
-                    }
-                    else if (cmd[0].Equals("triangle") == true)
-                    {
-                        string[] param = cmd[1].Split(',');
-                        if (param.Length != 2)
-                        {
-                            MessageBox.Show("Invalid Input");
-
-                        }
-                        else
-                        {
-                            Int32.TryParse(param[0], out width);
-                            Int32.TryParse(param[1], out height);
-                            IBasicShapes circle = factory.getShape("triangle");
-                            Triangle r = new Triangle();
-                            r.set(Color.Black, x, y, width, height);
-                            r.draw(g);
-                        }
-                    }
-                    else if (!cmd[0].Equals(null))
-                    {
-                        int errorLine = i + 1;
-                        MessageBox.Show("Invalid command recognised on line " + errorLine, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                }
+                loadShapes();
             }
             else
             {
                 if (txt_execution_command.Text.ToLower().Trim() == "clear")
                 {
-
                     picDisplay.Invalidate();
 
                 }
@@ -219,6 +110,65 @@ namespace Component1
                     txt_input_command.Clear();
                 }
             }
+        }
+
+        private void loadShapes()
+        {
+            Graphics g = picDisplay.CreateGraphics();
+            string command = txt_input_command.Text.ToLower();
+            string[] commandline = command.Split(new String[] { "\n" },
+
+            StringSplitOptions.RemoveEmptyEntries);
+            int numberOfLines = txt_input_command.Lines.Length;
+            for (int k = 0; k < commandline.Length; k++)
+            {
+                string[] cmd = commandline[k].Split(' ');
+                if (cmd[0].Equals("moveto") == true)
+                {
+                    picDisplay.Refresh();
+                    string[] param = cmd[1].Split(',');
+                    if (param.Length != 2)
+                    {
+                        MessageBox.Show("Incorrect Parameter");
+                    }
+                    else
+                    {
+                        Int32.TryParse(param[0], out x);
+                        Int32.TryParse(param[1], out y);
+                        moveTo(x, y);
+                    }
+
+                }
+            }
+        }
+
+        private void generateRectangle(int width, int height)
+        {
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawRectangle(p, x - (width / 2), y - (height / 2), width * 2, height * 2);
+        }
+
+
+        private void generateCircle(int radius)
+        {
+            Pen p = new Pen(Color.Black, 2);
+            g.DrawEllipse(p, x - radius, y - radius, radius * 2, radius * 2);
+        }
+
+        private void generateTriangle(int rBase, int adj, int hyp)
+        {
+            Pen po = new Pen(Color.Black, 2);
+            Point[] pnt = new Point[3];
+
+            pnt[0].X = x;
+            pnt[0].Y = y;
+
+            pnt[1].X = x - rBase;
+            pnt[1].Y = y;
+
+            pnt[2].X = x;
+            pnt[2].Y = y - adj;
+            g.DrawPolygon(po, pnt);
         }
         public void moveTo(int toX, int toY)
         {
