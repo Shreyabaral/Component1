@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,7 +22,10 @@ namespace Component1
         Creator factory = new Factory();
         Pen myPen = new Pen(Color.Black);
         public Color newcolor;
+        int counterLoop;
         int x = 0, y = 0;
+        public int counter = 0;
+        public int dgSize = 0;
         public int width = 0;
         public int height = 0;
         public int radius = 0;
@@ -139,8 +143,210 @@ namespace Component1
                     }
 
                 }
+
+
+
+                for (counterLoop = 0; counterLoop < numberOfLines; counterLoop++)
+                {
+                    String oneLineCommand = txt_input_command.Lines[counterLoop];
+                    oneLineCommand = oneLineCommand.Trim();
+                    if (!oneLineCommand.Equals(""))
+                    {
+                        commandRun(oneLineCommand);
+                    }
+
+                }
             }
         }
+
+        private void commandRun(String oneLineCommand)
+        {
+
+
+            Boolean hasPlus = oneLineCommand.Contains("+");
+            Boolean hasEquals = oneLineCommand.Contains("=");
+            if (hasEquals)
+            {
+                oneLineCommand = Regex.Replace(oneLineCommand, @"\s+", " ");
+                string[] cmd = oneLineCommand.Split(' ');
+                for (int i = 0; i < cmd.Length; i++)
+                {
+                    cmd[i] = cmd[i].Trim();
+                }
+                String firstWord = cmd[0].ToLower();
+                if (firstWord.Equals("if"))
+                {
+                    Boolean loop = false;
+                    if (cmd[1].ToLower().Equals("radius"))
+                    {
+                        if (radius == int.Parse(cmd[3]))
+                        {
+                            loop = true;
+                        }
+                    }
+                    else if (cmd[1].ToLower().Equals("width"))
+                    {
+                        if (width == int.Parse(cmd[3]))
+                        {
+                            loop = true;
+                        }
+                    }
+                    else if (cmd[1].ToLower().Equals("height"))
+                    {
+                        if (height == int.Parse(cmd[3]))
+                        {
+                            loop = true;
+                        }
+
+                    }
+                    else if (cmd[1].ToLower().Equals("counter"))
+                    {
+                        if (counter == int.Parse(cmd[3]))
+                        {
+                            loop = true;
+                        }
+                    }
+                    int ifStartLine = (getIfStartLineNumber());
+                    int ifEndLine = (getEndifEndLineNumber() - 1);
+                    counterLoop = ifEndLine;
+                    if (loop)
+                    {
+                        for (int j = ifStartLine; j <= ifEndLine; j++)
+                        {
+                            string oneLineCommand1 = txt_input_command.Lines[j];
+                            oneLineCommand1 = oneLineCommand1.Trim();
+                            if (!oneLineCommand1.Equals(""))
+                            {
+                                commandRun(oneLineCommand1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Provided if statement is false");
+                    }
+                }
+                else
+                {
+                    string[] cmd2 = oneLineCommand.Split('=');
+                    for (int j = 0; j < cmd2.Length; j++)
+                    {
+                        cmd2[j] = cmd2[j].Trim();
+                    }
+                    if (cmd2[0].ToLower().Equals("radius"))
+                    {
+                        radius = int.Parse(cmd2[1]);
+                    }
+                    else if (cmd2[0].ToLower().Equals("width"))
+                    {
+                        width = int.Parse(cmd2[1]);
+                    }
+                    else if (cmd2[0].ToLower().Equals("height"))
+                    {
+                        height = int.Parse(cmd2[1]);
+                    }
+                    else if (cmd2[0].ToLower().Equals("counter"))
+                    {
+                        counter = int.Parse(cmd2[1]);
+                    }
+                }
+            }
+            else if (hasPlus)
+            {
+                oneLineCommand = System.Text.RegularExpressions.Regex.Replace(oneLineCommand, @"\s+", " ");
+                string[] cmd = oneLineCommand.Split(' ');
+                if (cmd[0].ToLower().Equals("repeat"))
+                {
+                    counter = int.Parse(cmd[1]);
+                    if (cmd[2].ToLower().Equals("circle"))
+                    {
+                        int increaseValue = getSize(oneLineCommand);
+                        radius = increaseValue;
+                        for (int j = 0; j < counter; j++)
+                        {
+                            generateCircle(radius);
+                            radius += increaseValue;
+                        }
+                    }
+                    else if (cmd[2].ToLower().Equals("rectangle"))
+                    {
+                        int increaseValue = getSize(oneLineCommand);
+                        dgSize = increaseValue;
+                        for (int j = 0; j < counter; j++)
+                        {
+                            generateRectangle(dgSize, dgSize);
+                            dgSize += increaseValue;
+                        }
+                    }
+                    else if (cmd[2].ToLower().Equals("triangle"))
+                    {
+                        int increaseValue = getSize(oneLineCommand);
+                        dgSize = increaseValue;
+                        for (int j = 0; j < counter; j++)
+                        {
+                            generateTriangle(dgSize, dgSize, dgSize);
+                            dgSize += increaseValue;
+                        }
+                    }
+                }
+                else
+                {
+                    string[] cmd2 = oneLineCommand.Split('+');
+                    for (int j = 0; j < cmd2.Length; j++)
+                    {
+                        cmd2[j] = cmd2[j].Trim();
+                    }
+                    if (cmd2[0].ToLower().Equals("radius"))
+                    {
+                        radius += int.Parse(cmd2[1]);
+                    }
+                    else if (cmd2[0].ToLower().Equals("width"))
+                    {
+                        width += int.Parse(cmd2[1]);
+                    }
+                    else if (cmd2[0].ToLower().Equals("height"))
+                    {
+                        height += int.Parse(cmd2[1]);
+                    }
+                }
+            }
+            else
+            {
+                generateDrawCommand(oneLineCommand);
+            }
+
+
+        }
+
+        private void generateDrawCommand(string lineOfCommand)
+        {
+            String[] shapes = { "circle", "rectangle", "triangle" };
+            String[] variable = { "radius", "width", "height", "counter", "size" };
+        }
+
+
+        private int getSize(string lineCommand)
+        {
+            int value = 0;
+            return value;
+        }
+
+        private int getIfStartLineNumber()
+        {
+            int numberOfLines = txt_input_command.Lines.Length;
+            int lineNum = 0;
+            return lineNum;
+        }
+
+        private int getEndifEndLineNumber()
+        {
+            int numberOfLines = txt_input_command.Lines.Length;
+            int lineNum = 0;
+
+            
+            return lineNum;
+        }
+
 
         private void generateRectangle(int width, int height)
         {
