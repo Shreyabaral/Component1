@@ -223,7 +223,7 @@ namespace Component1
                     }
                     else
                     {
-                        MessageBox.Show("Provided if statement is false");
+                        MessageBox.Show("Please, provide correct if statement ");
                     }
                 }
                 else
@@ -320,14 +320,179 @@ namespace Component1
 
         private void generateDrawCommand(string lineOfCommand)
         {
-            String[] shapes = { "circle", "rectangle", "triangle" };
+            string[] shapes = { "circle", "rectangle", "triangle" };
             String[] variable = { "radius", "width", "height", "counter", "size" };
-        }
 
+            lineOfCommand = System.Text.RegularExpressions.Regex.Replace(lineOfCommand, @"\s+", " ");
+            string[] cmd = lineOfCommand.Split(' ');
+            //removing white spaces in between cmd
+            for (int i = 0; i < cmd.Length; i++)
+            {
+                cmd[i] = cmd[i].Trim();
+            }
+            String firstWord = cmd[0].ToLower();
+            Boolean firstcmdhape = shapes.Contains(firstWord);
+            if (firstcmdhape)
+            {
+
+                if (firstWord.Equals("circle"))
+                {
+                    Boolean secondWordIsVariable = variable.Contains(cmd[1].ToLower());
+                    if (secondWordIsVariable)
+                    {
+                        if (cmd[1].ToLower().Equals("radius"))
+                        {
+                            generateCircle(radius);
+                        }
+                    }
+                    else
+                    {
+                        generateCircle(Int32.Parse(cmd[1]));
+                    }
+
+                }
+                else if (firstWord.Equals("rectangle"))
+                {
+                    String args = lineOfCommand.Substring(9, (lineOfCommand.Length - 9));
+                    String[] parms = args.Split(',');
+                    for (int i = 0; i < parms.Length; i++)
+                    {
+                        parms[i] = parms[i].Trim();
+                    }
+                    Boolean secondWordIsVariable = variable.Contains(parms[0].ToLower());
+                    Boolean thirdWordIsVariable = variable.Contains(parms[1].ToLower());
+                    if (secondWordIsVariable)
+                    {
+                        if (thirdWordIsVariable)
+                        {
+                            generateRectangle(width, height);
+                        }
+                        else
+                        {
+                            generateRectangle(width, Int32.Parse(parms[1]));
+                        }
+
+                    }
+                    else
+                    {
+                        if (thirdWordIsVariable)
+                        {
+                            generateRectangle(Int32.Parse(parms[0]), height);
+                        }
+                        else
+                        {
+                            generateRectangle(Int32.Parse(parms[0]), Int32.Parse(parms[1]));
+                        }
+                    }
+                }
+                else if (firstWord.Equals("triangle"))
+                {
+                    String args = lineOfCommand.Substring(8, (lineOfCommand.Length - 8));
+                    String[] parms = args.Split(',');
+                    for (int i = 0; i < parms.Length; i++)
+                    {
+                        parms[i] = parms[i].Trim();
+                    }
+                    generateTriangle(Int32.Parse(parms[0]), Int32.Parse(parms[1]), Int32.Parse(parms[2]));
+                }
+
+            }
+            else
+            {
+                if (firstWord.Equals("loop"))
+                {
+                    counter = int.Parse(cmd[1]);
+                    int loopStartLine = (getLoopStartLineNumber());
+                    int loopEndLine = (getLoopEndLineNumber() - 1);
+                    counterLoop = loopEndLine;
+                    for (int i = 0; i < counter; i++)
+                    {
+                        for (int j = loopStartLine; j <= loopEndLine; j++)
+                        {
+                            String oneLineCommand = txt_input_command.Lines[j];
+                            oneLineCommand = oneLineCommand.Trim();
+                            if (!oneLineCommand.Equals(""))
+                            {
+                                commandRun(oneLineCommand);
+                            }
+                        }
+                    }
+                }
+                else if (firstWord.Equals("if"))
+                {
+                    Boolean loop = false;
+                    if (cmd[1].ToLower().Equals("radius"))
+                    {
+                        if (radius == int.Parse(cmd[1]))
+                        {
+                            loop = true;
+                        }
+                    }
+                    else if (cmd[1].ToLower().Equals("width"))
+                    {
+                        if (width == int.Parse(cmd[1]))
+                        {
+                            loop = true;
+                        }
+                    }
+                    else if (cmd[1].ToLower().Equals("height"))
+                    {
+                        if (height == int.Parse(cmd[1]))
+                        {
+                            loop = true;
+                        }
+
+                    }
+                    else if (cmd[1].ToLower().Equals("counter"))
+                    {
+                        if (counter == int.Parse(cmd[1]))
+                        {
+                            loop = true;
+                        }
+                    }
+                    int ifStartLine = (getIfStartLineNumber());
+                    int ifEndLine = (getEndifEndLineNumber() - 1);
+                    counterLoop = ifEndLine;
+                    if (loop)
+                    {
+                        for (int j = ifStartLine; j <= ifEndLine; j++)
+                        {
+                            String oneLineCommand = txt_input_command.Lines[j];
+                            oneLineCommand = oneLineCommand.Trim();
+                            if (!oneLineCommand.Equals(""))
+                            {
+                                commandRun(oneLineCommand);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         private int getSize(string lineCommand)
         {
             int value = 0;
+            if (lineCommand.ToLower().Contains("radius"))
+            {
+                int pos = (lineCommand.IndexOf("radius") + 6);
+                int size = lineCommand.Length;
+                String tempLine = lineCommand.Substring(pos, (size - pos));
+                tempLine = tempLine.Trim();
+                String newTempLine = tempLine.Substring(1, (tempLine.Length - 1));
+                newTempLine = newTempLine.Trim();
+                value = int.Parse(newTempLine);
+
+            }
+            else if (lineCommand.ToLower().Contains("size"))
+            {
+                int pos = (lineCommand.IndexOf("size") + 4);
+                int size = lineCommand.Length;
+                String tempLine = lineCommand.Substring(pos, (size - pos));
+                tempLine = tempLine.Trim();
+                String newTempLine = tempLine.Substring(1, (tempLine.Length - 1));
+                newTempLine = newTempLine.Trim();
+                value = int.Parse(newTempLine);
+            }
             return value;
         }
 
@@ -335,6 +500,25 @@ namespace Component1
         {
             int numberOfLines = txt_input_command.Lines.Length;
             int lineNum = 0;
+
+            for (int i = 0; i < numberOfLines; i++)
+            {
+                String oneLineCommand = txt_input_command.Lines[i];
+                oneLineCommand = Regex.Replace(oneLineCommand, @"\s+", " ");
+                string[] cmd = oneLineCommand.Split(' ');
+                //removing white spaces in between cmd
+                for (int j = 0; j < cmd.Length; j++)
+                {
+                    cmd[j] = cmd[j].Trim();
+                }
+                String firstWord = cmd[0].ToLower();
+                oneLineCommand = oneLineCommand.Trim();
+                if (firstWord.Equals("if"))
+                {
+                    lineNum = i + 1;
+
+                }
+            }
             return lineNum;
         }
 
@@ -343,10 +527,70 @@ namespace Component1
             int numberOfLines = txt_input_command.Lines.Length;
             int lineNum = 0;
 
-            
+            for (int i = 0; i < numberOfLines; i++)
+            {
+                String oneLineCommand = txt_input_command.Lines[i];
+                oneLineCommand = oneLineCommand.Trim();
+                if (oneLineCommand.ToLower().Equals("endif"))
+                {
+                    lineNum = i + 1;
+
+                }
+            }
             return lineNum;
         }
 
+        private int getLoopStartLineNumber()
+        {
+            int numberOfLines = txt_input_command.Lines.Length;
+            int lineNum = 0;
+
+            for (int i = 0; i < numberOfLines; i++)
+            {
+                String oneLineCommand = txt_input_command.Lines[i];
+                oneLineCommand = Regex.Replace(oneLineCommand, @"\s+", " ");
+                string[] cmd = oneLineCommand.Split(' ');
+                //removing white spaces in between cmd
+                for (int j = 0; j < cmd.Length; j++)
+                {
+                    cmd[j] = cmd[j].Trim();
+                }
+                String firstWord = cmd[0].ToLower();
+                oneLineCommand = oneLineCommand.Trim();
+                if (firstWord.Equals("loop"))
+                {
+                    lineNum = i + 1;
+
+                }
+            }
+            return lineNum;
+
+        }
+
+        private int getLoopEndLineNumber()
+        {
+            try
+            {
+                int numberOfLines = txt_input_command.Lines.Length;
+                int lineNum = 0;
+
+                for (int i = 0; i < numberOfLines; i++)
+                {
+                    String oneLineCommand = txt_input_command.Lines[i];
+                    oneLineCommand = oneLineCommand.Trim();
+                    if (oneLineCommand.ToLower().Equals("endloop"))
+                    {
+                        lineNum = i + 1;
+
+                    }
+                }
+                return lineNum;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
 
         private void generateRectangle(int width, int height)
         {
