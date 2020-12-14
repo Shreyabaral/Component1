@@ -10,14 +10,17 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Component1
 {
     public partial class Form : System.Windows.Forms.Form
     {
         Graphics g;
+        SyntaxValidation syntaxCheck;
         public Form()
         {
             InitializeComponent();
+            g = picDisplay.CreateGraphics();
         }
         Creator factory = new Factory();
         Pen myPen = new Pen(Color.Black);
@@ -100,7 +103,18 @@ namespace Component1
 
             if (txt_execution_command.Text.ToLower().Trim() == "run")
             {
-                loadShapes();
+                if (txt_input_command.Text != null && txt_input_command.Text != "")
+                {
+                    syntaxCheck = new SyntaxValidation(txt_input_command);
+
+                    if (!syntaxCheck.isSomethingInvalid)
+                    {
+
+                        loadShapes();
+                    }
+                }
+
+
             }
             else
             {
