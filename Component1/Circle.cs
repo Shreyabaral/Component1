@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace Component1
 {
+    /// <summary>
+    /// has commands of the class circle 
+    /// </summary>
     public class Circle : IBasicShapes
     {
         public int x,y,radius;
@@ -11,10 +14,20 @@ namespace Component1
         {
 
         }
+        /// <summary>
+        /// gets the parameter for the  circle 
+        /// </summary>
+        /// <param name="x"> sets the x-coordinate</param>
+        /// <param name="y"> sets the y-coordinate</param>
+        /// <param name="radius"> sets the radius of the circle </param>
         public Circle(int x,int y,int radius)
         {
             this.radius = radius;
         }
+        /// <summary>
+        /// draws the circle in the display panel 
+        /// </summary>
+        /// <param name="g"></param>
         public void draw(Graphics g)
         {
             try
@@ -28,7 +41,11 @@ namespace Component1
                 throw ex;
             }
         }
-
+        /// <summary>
+        /// accepts the color and sets value for x,y and radius
+        /// </summary>
+        /// <param name="c"> gives the color of the circle </param>
+        
         public void set(Color c, params int[] list)
         {
             try

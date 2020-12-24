@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Component1
 {
+    /// <summary>
+    /// class declared as factory
+    /// </summary>
     class Factory : Creator
     {
+        /// <summary>
+        /// used to pass the shape of an object
+        /// </summary>
+        /// <param name="ShapeType"></param>
+        /// <returns></returns>
+        
         public override IBasicShapes getShape(string ShapeType)
         {
             ShapeType = ShapeType.ToLower().Trim();

@@ -7,10 +7,16 @@ using Rectangle = Component1.Rectangle;
 
 namespace UnitTestProject
 {
+    /// <summary>
+    /// class declared as UnitTestRectangle 
+    /// </summary>
     [TestClass]
     public class UnitTestRectangle
     {
         [TestMethod]
+        /// <summary>
+        ///Checks the expected output with actual output
+        /// </summary>
         public void UniTestRectangle()
         {
             var rectangle = new Rectangle();

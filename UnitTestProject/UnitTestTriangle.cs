@@ -8,9 +8,15 @@ using System.Text;
 namespace UnitTestProject
 {
     [TestClass]
-   public class UnitTestTriangle
+    /// <summary>
+    /// class declared as UnitTestTriangle
+    /// </summary>
+    public class UnitTestTriangle
     {
         [TestMethod]
+        /// <summary>
+        /// Checks the expected value with output
+        /// </summary>
         public void UniTestTriangle()
         {
             var triangle = new Triangle();

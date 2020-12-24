@@ -3,21 +3,37 @@ using System.Drawing;
 
 namespace Component1
 {
+    /// <summary>
+    /// class declared as rectangle 
+    /// </summary>
     public class Rectangle : IBasicShapes
     {
         public int x, y, width, height;
-
+        /// <summary>
+        /// sets the width and height of the rectangle
+        /// </summary>
         public Rectangle() : base()
         {
             width = 0;
             height = 0;
         }
-
+        /// <summary>
+        /// sets  the value of x-axis, y-axis, width nad height of rectangle
+        /// </summary>
+        /// <param name="x">x-coordinate</param>
+        /// <param name="y">y-coordinate </param>
+        /// <param name="width"> width of rectangele</param>
+        /// <param name="height"> height of rectangle</param>
         public Rectangle(int x, int y, int width, int height)
         {
             this.width = width;
             this.height = height;
         }
+
+        /// <summary>
+        /// used to draw rectangle
+        /// </summary>
+        /// <param name="g"></param>
         public void draw(Graphics g)
         {
             try
@@ -32,6 +48,11 @@ namespace Component1
                 throw ex;
             }
         }
+        /// <summary>
+        /// provides the color and parameters
+        /// </summary>
+        /// <param name="c"> color</param>
+        /// <param name="list"> List of parameters</param>
 
         public void set(Color c, params int[] list)
         {

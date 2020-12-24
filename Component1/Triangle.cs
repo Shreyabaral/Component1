@@ -3,12 +3,21 @@ using System.Drawing;
 
 namespace Component1
 {
+    /// <summary>
+    /// class declared as triangle and implements interface 
+    /// </summary>
     public class Triangle : IBasicShapes
     {
-
+        /// <summary>
+        /// sets the values for sides of triangle 
+        /// </summary>
         public int xcordinate1, ycordinate1, xcordinate2, ycordinate2,
             xcordinate3, ycordinate3, xcordinate4, ycordinate4,
             xcordinate5, ycordinate5, xcordinate6, ycordinate6;
+        /// <summary>
+        /// draws the triangle 
+        /// </summary>
+        /// <param name="g"></param>
         public void draw(Graphics g)
         {
             try
@@ -24,6 +33,11 @@ namespace Component1
                 throw ex;
             }
         }
+        /// <summary>
+        /// used to set color and values of different sides of trianle
+        /// </summary>
+        /// <param name="c"> Color </param>
+        /// <param name="list"> List of parameters </param>
 
         public void set(Color c, params int[] list)
         {

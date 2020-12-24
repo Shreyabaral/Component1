@@ -8,9 +8,16 @@ using System.Text;
 namespace UnitTestProject
 {
     [TestClass]
+    /// <summary>
+    /// class declared as UnitTestCircle
+    /// </summary>
+
     public class UnitTestCircle
     {
         [TestMethod]
+        /// <summary>
+        /// checks the expected value with output value 
+        /// </summary>
         public void UniTestCircle()
         {
             var circle = new Circle();

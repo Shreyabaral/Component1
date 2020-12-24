@@ -12,6 +12,7 @@ namespace Component1
     {
 
         /// <summary>
+        /// validates the input provided by the end-user
         /// 
         /// </summary>
        
@@ -34,7 +35,7 @@ namespace Component1
         public int loopLineNo = 0, endLoopLineNo = 0, ifLineNo = 0, endIfLineNo = 0;
 
         /// <summary>
-        /// used to check the commands provided in the command box
+        ///  checks the commands provided in the command box
         /// </summary>
         /// <param name="txtCommand">used to get commands input by the user</param>
         public SyntaxValidation(TextBox txtCommand)
@@ -66,7 +67,7 @@ namespace Component1
         }
 
         /// <summary>
-        /// used to check each line to determine whether the commands input by the users contain those commands 
+        /// checks each line to ensure whether the commands input by the users contain those commands 
         /// </summary>
         /// <param name="lineOfCommand"></param>
         public void checkLineValidation(string lineOfCommand)

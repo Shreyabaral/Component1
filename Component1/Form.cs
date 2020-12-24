@@ -27,12 +27,19 @@ namespace Component1
         public Color newcolor;
         int counterLoop;
         int x = 0, y = 0;
+        /// <summary>
+        /// initialization of differnt variables
+        /// </summary>
         public int counter = 0;
         public int dgSize = 0;
         public int width = 0;
         public int height = 0;
         public int radius = 0;
-
+        /// <summary>
+        /// used to browse the command that were saved 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void browseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             {
@@ -69,22 +76,39 @@ namespace Component1
             }
 
         }
+        /// <summary>
+        /// exits the program 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
+        /// <summary>
+        /// has the document that entails about the program 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("file:///E:/Help.pdf");
         }
-
+        /// <summary>
+        /// redirects to github
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Shreyabaral/Component1");
         }
-
+        /// <summary>
+        /// used to save the command in specific file 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -97,7 +121,11 @@ namespace Component1
                 MessageBox.Show("File saved successfully!");
             }
         }
-
+        /// <summary>
+        /// Runs the program based on the command line provided in execution box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txt_execution_command_TextChanged(object sender, EventArgs e)
         {
 
@@ -129,7 +157,9 @@ namespace Component1
                 }
             }
         }
-
+        /// <summary>
+        /// loads the command in display panel
+        /// </summary>
         private void loadShapes()
         {
             Graphics g = picDisplay.CreateGraphics();
@@ -172,7 +202,10 @@ namespace Component1
                 }
             }
         }
-
+        /// <summary>
+        /// runs the program after run command is provided
+        /// </summary>
+        /// <param name="oneLineCommand"></param>
         private void commandRun(String oneLineCommand)
         {
 
@@ -331,7 +364,10 @@ namespace Component1
 
 
         }
-
+        /// <summary>
+        ///  used for returning the size of the shapes as per the commands provided
+        /// </summary>
+        /// <param name="lineOfCommand"></param>
         private void generateDrawCommand(string lineOfCommand)
         {
             string[] shapes = { "circle", "rectangle", "triangle" };
@@ -482,7 +518,11 @@ namespace Component1
                 }
             }
         }
-
+        /// <summary>
+        /// sets  the size of the shapes based on user input
+        /// </summary>
+        /// <param name="lineCommand"></param>
+        /// <returns></returns>
         private int getSize(string lineCommand)
         {
             int value = 0;
@@ -509,7 +549,10 @@ namespace Component1
             }
             return value;
         }
-
+        /// <summary>
+        /// Initiate whether if statement is present in the commands given in the command box
+        /// </summary>
+        /// <returns></returns>
         private int getIfStartLineNumber()
         {
             int numberOfLines = txt_input_command.Lines.Length;
@@ -535,7 +578,10 @@ namespace Component1
             }
             return lineNum;
         }
-
+        /// <summary>
+        /// Checks if if statement ended with endif statement
+        /// </summary>
+        /// <returns></returns>
         private int getEndifEndLineNumber()
         {
             int numberOfLines = txt_input_command.Lines.Length;
@@ -553,7 +599,10 @@ namespace Component1
             }
             return lineNum;
         }
-
+        /// <summary>
+        /// Initiates loop as per command given in the command box 
+        /// </summary>
+        /// <returns></returns>
         private int getLoopStartLineNumber()
         {
             int numberOfLines = txt_input_command.Lines.Length;
@@ -580,6 +629,10 @@ namespace Component1
             return lineNum;
 
         }
+        /// <summary>
+        /// Checks if the loop has ended with end loop
+        /// </summary>
+        /// <returns></returns>
 
         private int getLoopEndLineNumber()
         {
@@ -605,20 +658,34 @@ namespace Component1
                 return 0;
             }
         }
+        /// <summary>
+        /// Draws rectangle based on user input
+        /// 
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
 
         private void generateRectangle(int width, int height)
         {
             Pen p = new Pen(Color.Black, 2);
             g.DrawRectangle(p, x - (width / 2), y - (height / 2), width * 2, height * 2);
         }
-
+        /// <summary>
+        /// Draws circle based on user input
+        /// </summary>
+        /// <param name="radius"></param>
 
         private void generateCircle(int radius)
         {
             Pen p = new Pen(Color.Black, 2);
             g.DrawEllipse(p, x - radius, y - radius, radius * 2, radius * 2);
         }
-
+        /// <summary>
+        /// Draws Triangle based on user input
+        /// </summary>
+        /// <param name="rBase"></param>
+        /// <param name="adj"></param>
+        /// <param name="hyp"></param>
         private void generateTriangle(int rBase, int adj, int hyp)
         {
             Pen po = new Pen(Color.Black, 2);
@@ -634,12 +701,21 @@ namespace Component1
             pnt[2].Y = y - adj;
             g.DrawPolygon(po, pnt);
         }
+        /// <summary>
+        /// sets the value of x-axis and y-axis
+        /// </summary>
+        /// <param name="toX">x-coordinate</param>
+        /// <param name="toY"> y- coordinate</param>
         public void moveTo(int toX, int toY)
         {
             x = toX;
             y = toY;
         }
-
+        /// <summary>
+        /// sets the position of the x and y axis
+        /// </summary>
+        /// <param name="toX"> x-axis</param>
+        /// <param name="toY">y-axis </param>
         public void drawTo(int toX, int toY)
         {
             x = toX;
